@@ -1,8 +1,6 @@
 <?php
 	function stop($lap) {
-		if($lap == 121) {
-			exit();
-		}
+		if($lap == 121) {exit();}
 	}
 
 	function secondDump($lap, $contents) {
