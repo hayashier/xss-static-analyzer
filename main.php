@@ -218,7 +218,7 @@ You should have received a copy of the GNU General Public License along with thi
 	echo 'Total : ';echo $total;echo '<br>';
 
 	$elapsed = microtime(TRUE) - $start;
-	exit();
+
 	################################  RESULT  #################################
 ?>
 <div id="window1" name="window" style="width:600px; height:250px;">

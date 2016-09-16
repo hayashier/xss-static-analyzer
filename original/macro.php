@@ -1,10 +1,9 @@
 <?php
-	define('MAX_LAP', 1);
-	define('IS_CUI', true);
+	define('SUGGEST_FLAG', true);
 
-	if (IS_CUI) {
-		define('BR', "\n");
+	if (SUGGEST_FLAG) {
+		define('MAX_LAP', 2);
 	}
 	else {
-		define('BR', '</br>');
+		define('MAX_LAP', 1);
 	}
