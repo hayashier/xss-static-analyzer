@@ -531,7 +531,7 @@ class ExtendScanner extends Scanner
 	// parse tokens of php file, build program model, follow program flow, initiate taint analysis
 	function parse()
 	{
-		for($lap = 0; $lap < MAX_LAP; $lap++) { //EDIT:2lap
+		$find_flag = false;
 		// scan all tokens
 		for($i=0,$tokencount=count($this->tokens); $i<$tokencount;  $i++, $this->tif++)
 		{
@@ -1034,10 +1034,13 @@ class ExtendScanner extends Scanner
 
 								//EDIT
 								if(in_array($search_input, Sources::$V_USERINPUT) && $GLOBALS['vul_func'][$specify_class_method]['userinput'] === 2){
+									if (!$find_flag) {
 									echo '<div style="color:#ff0000;">';
 									echo "<br>##1. Property : ";
 									echo "hit!";
 									$GLOBALS['vul_count']['#1']++;
+									$find_flag = true;
+									}
 								}
 								else {
 									echo '<div style="color:#0000ff;">';
@@ -1076,10 +1079,13 @@ class ExtendScanner extends Scanner
 
 
 								if(in_array($search_input, Sources::$V_USERINPUT) && $GLOBALS['vul_func'][$specify_class_method]['userinput'] === 2){
+									if (!$find_flag) {
 									echo '<div style="color:#ff0000;">';
 									echo "<br>##3. Static Method : ";
 									echo "hit!";
 									$GLOBALS['vul_count']['#3']++;
+									$find_flag = true;
+									}
 								}
 								else {
 									echo '<div style="color:#00ff00;">';
@@ -1439,10 +1445,13 @@ class ExtendScanner extends Scanner
 									}
 
 									if ($GLOBALS['object_flag'][$vul_function]) {
+										if (!$find_flag) {
 										echo '<div style="color:#ff0000;">';
 										echo "<br>##4. Property  original from Dynamic method : ";
 										echo "hit!";
 										$GLOBALS['vul_count']['#4']++;//return;
+										$find_flag = true;
+										}
 									}
 									else {
 										echo '<div style="color:#5500ff;">';
@@ -1450,10 +1459,13 @@ class ExtendScanner extends Scanner
 										echo "No hit";
 
 										if ($GLOBALS['vul_func'][$specify_class_method]['userinput']) {
+												if(!$find_flag) {
 												echo '<div style="color:#2222bb;">';
 												echo "<br>##5. Extra Property  original from Dynamic method : ";
 												echo "hit!";
 												$GLOBALS['vul_count']['#5']++;//return;
+												$find_flag = true;
+												}
 										}
 									}
 									echo " → ";
@@ -1491,10 +1503,13 @@ class ExtendScanner extends Scanner
 									$called_class_method = $result.'::'.$called_property;
 
 									if ($GLOBALS['object_flag'][$called_class_method]) {
+										if (!$find_flag) {
 										echo '<div style="color:#ff0000;">';
 										echo "<br>##2. Dynamic Method : ";
 										echo "hit!";
 										$GLOBALS['vul_count']['#2']++;
+										$find_flag = true;
+										}
 									}
 									else{
 										echo '<div style="color:#ff00ff;">';
@@ -2321,8 +2336,6 @@ class ExtendScanner extends Scanner
 
 		}
 		// all tokens scanned.
-		}//EDIT:2lap
-
 		return $this->inc_map;
 	}
 }

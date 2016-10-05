@@ -170,6 +170,8 @@ You should have received a copy of the GNU General Public License along with thi
 			$GLOBALS['vul_count']['#3'] = 0;
 			$GLOBALS['vul_count']['#4'] = 0;
 			$GLOBALS['vul_count']['#5'] = 0;
+			$GLOBALS['file_total'] = $file_amount;
+
 			for($fit=0; $fit<$file_amount; $fit++)
 			{
 				// for scanning display
@@ -206,6 +208,10 @@ You should have received a copy of the GNU General Public License along with thi
 			}
 		}
 	}
+
+	echo '##################################################<br>';
+	echo '#################### Suggestion ####################<br>';
+	echo '##################################################<br>';
 	echo '<br> #####  Count  #####<br>';
 	echo '#1 Property vulnerability : ';echo $GLOBALS['vul_count']['#1'];echo '<br>';
 	echo '#2 Dynamic vulnerability : ';echo $GLOBALS['vul_count']['#2'];echo '<br>';
@@ -213,9 +219,12 @@ You should have received a copy of the GNU General Public License along with thi
 	echo '#4 Property vulnerability 1 : ';echo $GLOBALS['vul_count']['#4'];echo '<br>';
 	echo '#5 Property vulnerability 2: ';echo $GLOBALS['vul_count']['#5'];echo '<br>';
 	echo '<br>';
-	$total = $GLOBALS['vul_count']['#1'] + $GLOBALS['vul_count']['#2'] + $GLOBALS['vul_count']['#3']
-	+ $GLOBALS['vul_count']['#4'] + $GLOBALS['vul_count']['#5'];
-	echo 'Total : ';echo $total;echo '<br>';
+
+	echo 'Total : ';echo $GLOBALS['file_total'];echo '<br><br>';
+
+	echo '###################################################<br>';
+	echo '#################### Original ########################<br>';
+	echo '###################################################<br><br>';
 
 	$elapsed = microtime(TRUE) - $start;
 
